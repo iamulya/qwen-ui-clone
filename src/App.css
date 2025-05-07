@@ -1,0 +1,402 @@
+/* src/App.css - (Mostly the same CSS as before) */
+:root {
+    --sidebar-bg: #f0f2f5; /* Light greyish blue */
+    --main-bg: #ffffff;
+    --primary-purple: #8A2BE2; /* Approximate purple */
+    --button-purple-light: #e6d4ff; /* Light purple for thinking/search buttons */
+    --text-dark: #333333;
+    --text-light: #666666;
+    --text-placeholder: #aaaaaa;
+    --border-color: #e0e0e0;
+    --button-hover-bg: #e9e9e9;
+    --avatar-bg: #4A5568; /* Dark gray for avatar */
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    display: flex;
+    height: 100vh;
+    background-color: var(--main-bg);
+    color: var(--text-dark);
+    overflow: hidden;
+}
+
+.app-container { /* New: To wrap sidebar and main content */
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.sidebar {
+    width: 260px;
+    background-color: var(--sidebar-bg);
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid var(--border-color);
+    flex-shrink: 0; /* Prevent sidebar from shrinking */
+}
+
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--primary-purple);
+    display: flex;
+    align-items: center;
+}
+.logo-icon-wrapper { /* Wrapper for the Q icon */
+    width: 30px;
+    height: 30px;
+    background-color: var(--primary-purple);
+    margin-right: 8px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.sidebar-actions .icon-placeholder {
+    width: 24px;
+    height: 24px;
+    border: 2px solid var(--text-light);
+    border-radius: 4px;
+    position: relative;
+    cursor: pointer;
+}
+.sidebar-actions .icon-placeholder::before {
+    content: '';
+    position: absolute;
+    top: 2px; left: 5px;
+    width: 10px; height: 2px;
+    background-color: var(--text-light);
+}
+.sidebar-actions .icon-placeholder::after {
+    content: '';
+    position: absolute;
+    top: 7px; left: 5px;
+    width: 10px; height: 2px;
+    background-color: var(--text-light);
+}
+
+.new-chat-btn {
+    background-color: var(--button-purple-light);
+    color: var(--primary-purple);
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: left;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+.new-chat-btn .plus-icon {
+    font-size: 20px;
+    margin-right: 8px;
+    font-weight: bold;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: var(--main-bg);
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border-color);
+}
+.search-bar .search-icon {
+    color: var(--text-light);
+    margin-right: 8px;
+    font-size: 16px;
+}
+.search-bar input {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    flex-grow: 1;
+    font-size: 14px;
+}
+.search-bar .dots-icon {
+    color: var(--text-light);
+    cursor: pointer;
+}
+
+.chat-list-header {
+    display: flex;
+    align-items: center;
+    color: var(--text-dark);
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+.chat-list-header .arrow-down {
+    margin-right: 8px;
+}
+
+.chat-list ul {
+    list-style: none;
+    padding-left: 5px;
+}
+.chat-list h4 {
+    font-size: 13px;
+    color: var(--text-light);
+    margin-top: 15px;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+.chat-list li {
+    padding: 8px 10px;
+    font-size: 14px;
+    color: var(--text-dark);
+    border-radius: 6px;
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.chat-list li:hover {
+    background-color: var(--button-hover-bg);
+}
+
+.sidebar-footer {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    border-top: 1px solid var(--border-color);
+}
+.avatar { /* Reusable avatar style */
+    width: 32px;
+    height: 32px;
+    background-color: var(--avatar-bg);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 16px;
+}
+.sidebar-footer .avatar {
+    margin-right: 10px;
+}
+.sidebar-footer .username {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-dark);
+}
+
+.main-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 40px;
+    position: relative;
+    overflow-y: auto; /* Allow scrolling if content overflows */
+}
+
+.main-header {
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 60px;
+    position: relative;
+}
+
+.model-selector {
+    text-align: center;
+}
+.model-selector .model-name {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-dark);
+    cursor: pointer;
+}
+.model-selector .model-name .arrow-down {
+    margin-left: 5px;
+}
+.model-selector .set-default {
+    font-size: 12px;
+    color: var(--text-light);
+}
+
+.top-right-avatar .avatar { /* Use the .avatar class */
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
+}
+.top-right-avatar {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.greeting {
+    font-size: 32px;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.input-area-container {
+    width: 100%;
+    max-width: 800px;
+    background-color: #f9f9fc;
+    border-radius: 12px;
+    padding: 15px 20px 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    border: 1px solid var(--border-color);
+    margin-bottom: 30px; /* Space before suggestions */
+}
+
+.input-area-container textarea {
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-size: 16px;
+    min-height: 60px;
+    resize: none;
+    color: var(--text-dark);
+    margin-bottom: 10px;
+}
+.input-area-container textarea::placeholder {
+    color: var(--text-placeholder);
+}
+
+.input-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.input-controls .left-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Use gap for spacing */
+}
+
+.input-controls button {
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 6px 12px;
+    /* margin-right: 8px; REMOVED, using gap on parent */
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    color: var(--text-dark);
+}
+.input-controls button:hover {
+    background-color: var(--button-hover-bg);
+}
+
+.input-controls .icon-btn {
+    padding: 8px;
+    border-radius: 50%;
+    font-size: 18px;
+    line-height: 1;
+}
+.input-controls .mic-btn {
+    background-color: var(--primary-purple);
+    color: white;
+    border: none;
+    font-size: 20px;
+}
+.input-controls .mic-btn:hover {
+    background-color: indigo; /* Darker purple on hover */
+}
+
+.input-controls .control-btn {
+    display: flex;
+    align-items: center;
+}
+.input-controls .control-btn .icon {
+    margin-right: 6px;
+    font-size: 16px;
+}
+.input-controls .control-btn.thinking,
+.input-controls .control-btn.search {
+    background-color: var(--button-purple-light);
+    color: var(--primary-purple);
+    border: 1px solid var(--primary-purple); /* Or var(--button-purple-light) if preferred */
+}
+.input-controls .control-btn.thinking:hover,
+.input-controls .control-btn.search:hover {
+    background-color: #d9c0ff;
+}
+
+.suggestions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    /* margin-top: 30px; REMOVED, spacing handled by input-area-container margin-bottom */
+    width: 100%;
+    max-width: 800px;
+}
+
+.suggestions button {
+    background-color: var(--main-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 8px 15px;
+    font-size: 13px;
+    color: var(--text-dark);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+.suggestions button:hover {
+    background-color: var(--button-hover-bg);
+    border-color: #ccc;
+}
+.suggestions button .search-icon-suggestion { /* Renamed to avoid conflict with .search-bar .search-icon */
+    margin-right: 6px;
+    color: var(--text-light);
+}
+
+.help-icon-container { /* Wrapper for fixed positioning */
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+.help-icon {
+    width: 30px;
+    height: 30px;
+    background-color: var(--button-hover-bg);
+    color: var(--text-dark);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    border: 1px solid var(--border-color);
+}
